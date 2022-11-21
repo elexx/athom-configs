@@ -11,15 +11,7 @@ substitutions:
   # Current Limit in Amps. AU Plug = 10. IL, BR, EU, UK, US Plug = 16.
   current_limit : "16"
   # Define a domain for this device to use. i.e. iot.home.lan (so device will appear as athom-smart-plug-v2.iot.home.lan in DNS/DHCP logs)
-  dns_domain: ".local"
-  # Set timezone of the smart plug. Useful if the plug is in a location different to the HA server. Can be entered in unix Country/Area format (i.e. "Australia/Sydney")
-  timezone: ""
-  # Set the duration between the sntp service polling ntp.org servers for an update
-  sntp_update_interval: "6h"
-  # Network time servers for your region, enter from lowest to highest priority. To use local servers update as per zones or countries at: https://www.ntppool.org/zone/@
-  sntp_server_1: "0.pool.ntp.org"
-  sntp_server_2: "1.pool.ntp.org"
-  sntp_server_3: "2.pool.ntp.org"  
+  dns_domain: ""
   # Enables faster network connections, with last connected SSID being connected to and no full scan for SSID being undertaken
   wifi_fast_connect: "false"
   # Define logging level: NONE, ERROR, WARN, INFO, DEBUG (Default), VERBOSE, VERY_VERBOSE
@@ -107,7 +99,7 @@ wifi:
 captive_portal:
 
 dashboard_import:
-  package_import_url: github://athom-tech/athom-configs/athom-smart-plug-v2.yaml
+  package_import_url: github://elexx/athom-configs/athom-smart-plug-v2.yaml
 
 # Dentra Components - Adds 'Platform - Energy Statistics'
 # https://github.com/dentra/esphome-components/tree/master/components/energy_statistics
@@ -394,17 +386,8 @@ text_sensor:
     icon: mdi:clock-start
 
 time:
-  - platform: sntp
-    id: sntp_time
-  # Define the timezone of the device
-    timezone: "${timezone}"
-  # Change sync interval from default 5min to 6 hours (or as set in substitutions)
-    update_interval: ${sntp_update_interval}
-  # Set specific sntp servers to use
-    servers: 
-      - "${sntp_server_1}"
-      - "${sntp_server_2}"
-      - "${sntp_server_3}"    
+  - platform: homeassistant
+    id: homeassistant_time
   # Publish the time the device was last restarted
     on_time_sync:
       then:
@@ -415,4 +398,4 @@ time:
             then:
               - text_sensor.template.publish:
                   id: device_last_restart
-                  state: !lambda 'return id(sntp_time).now().strftime("%a %d %b %Y - %I:%M:%S %p");'
+                  state: !lambda 'return id(homeassistant_time).now().strftime("%a %d %b %Y - %I:%M:%S %p");'
