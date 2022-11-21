@@ -45,10 +45,6 @@ logger:
 
 mdns:
   disabled: false
-
-web_server:
-  port: 80
-
 wifi:
   ap: {} # This spawns an AP with the device name and mac address with no password.
   fast_connect: "${wifi_fast_connect}"
@@ -57,7 +53,7 @@ wifi:
 captive_portal:
 
 dashboard_import:
-  package_import_url: github://athom-tech/athom-configs/athom-smart-plug-v2.yaml
+  package_import_url: github://elexx/athom-configs/athom-smart-plug-v2.yaml
 
 uart:
   rx_pin: RX
@@ -253,8 +249,8 @@ text_sensor:
     icon: mdi:clock-start
 
 time:
-  - platform: sntp
-    id: sntp_time
+  - platform: homeassistant
+    id: homeassistant_time
   # Define the timezone of the device
     timezone: "${timezone}"
   # Change sync interval from default 5min to 6 hours
@@ -269,4 +265,4 @@ time:
             then:
               - text_sensor.template.publish:
                   id: device_last_restart
-                  state: !lambda 'return id(sntp_time).now().strftime("%a %d %b %Y - %I:%M:%S %p");'
+                  state: !lambda 'return id(homeassistant_time).now().strftime("%a %d %b %Y - %I:%M:%S %p");'
