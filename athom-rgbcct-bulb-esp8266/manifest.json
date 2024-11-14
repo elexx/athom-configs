@@ -1,0 +1,13 @@
+{
+  "chipFamily": "ESP8266",
+  "ota": {
+    "path": "athom-rgbcct-bulb-esp8266/athom-rgbcct-bulb-esp8266.ota.bin",
+    "md5": "f590b2cb3730a277f4157a8397ae792f"
+  },
+  "parts": [
+    {
+      "path": "athom-rgbcct-bulb-esp8266/athom-rgbcct-bulb-esp8266.factory.bin",
+      "offset": 0
+    }
+  ]
+}

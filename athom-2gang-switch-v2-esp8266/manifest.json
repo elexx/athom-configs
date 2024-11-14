@@ -1,0 +1,13 @@
+{
+  "chipFamily": "ESP8266",
+  "ota": {
+    "path": "athom-2gang-switch-v2-esp8266/athom-2gang-switch-v2-esp8266.ota.bin",
+    "md5": "b9e72762abef12f0bbd50ebc2acd460f"
+  },
+  "parts": [
+    {
+      "path": "athom-2gang-switch-v2-esp8266/athom-2gang-switch-v2-esp8266.factory.bin",
+      "offset": 0
+    }
+  ]
+}

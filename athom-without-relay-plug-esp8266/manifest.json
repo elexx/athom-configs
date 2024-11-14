@@ -1,0 +1,13 @@
+{
+  "chipFamily": "ESP8266",
+  "ota": {
+    "path": "athom-without-relay-plug-esp8266/athom-without-relay-plug-esp8266.ota.bin",
+    "md5": "d5ca0db0d8cd9c9574667861f1f42a66"
+  },
+  "parts": [
+    {
+      "path": "athom-without-relay-plug-esp8266/athom-without-relay-plug-esp8266.factory.bin",
+      "offset": 0
+    }
+  ]
+}
